@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Box, IconButton, Typography, Button } from "@mui/material";
-import { Delete, Add } from "@mui/icons-material";
+import { Add, DeleteOutline } from "@mui/icons-material";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Column, Id, Task } from "../types";
@@ -153,20 +153,16 @@ function ColumnContainer(props: Props) {
             color: "gray",
             "&:hover": {
               backgroundColor: colors.columnBackground,
-              color: "black",
+              color: "#f50057",
             },
           }}
           onClick={() => {
             deleteColumn(column.id);
           }}
         >
-          <Delete
+          <DeleteOutline
             sx={{
-              color: "transparent",
-              stroke: "white",
-              "&:hover": {
-                stoke: "white",
-              },
+              color: "white-400",
             }}
           />
         </IconButton>

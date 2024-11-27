@@ -15,6 +15,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
+import { colors } from "../theme/colors";
 
 function TaskDetails() {
   const { taskId } = useParams();
@@ -93,10 +94,11 @@ function TaskDetails() {
         margin: "auto",
         p: 3,
         boxShadow: 3,
+        width: "50vw",
         backgroundColor: "background.default",
       }}
     >
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom color="white">
         Task Details
       </Typography>
       <Box display="flex" flexDirection="column" gap={2}>
@@ -106,6 +108,12 @@ function TaskDetails() {
           value={task.content}
           onChange={(e) => setTask({ ...task, content: e.target.value })}
           fullWidth
+          InputProps={{
+            style: { color: "white" },
+          }}
+          InputLabelProps={{
+            style: { color: "white" },
+          }}
         />
         <TextField
           label="Description"
@@ -116,15 +124,41 @@ function TaskDetails() {
           multiline
           rows={4}
         />
-        <FormControl fullWidth sx={{ textAlign: "left", marginBottom: 2 }}>
-          <InputLabel></InputLabel>
+        <FormControl
+          fullWidth
+          sx={{ textAlign: "left", marginBottom: 2, color: "white" }}
+        >
+          <InputLabel sx={{ color: "white" }}></InputLabel>
           <Select
             value={task.status}
             onChange={(e) => setTask({ ...task, status: e.target.value })}
             displayEmpty
+            sx={{
+              color: "white",
+              borderColor: "white",
+              backgroundColor: colors.columnBackground, // Set background color of select field
+              "&.Mui-focused": {
+                backgroundColor: colors.columnBackground, // Keep background black when focused
+              },
+              "&:hover": {
+                backgroundColor: colors.columnBackground, // Darken the background color on hover
+              },
+            }}
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  backgroundColor: colors.columnBackground, // Set background of dropdown menu
+                  color: "white", // Set text color of dropdown options
+                },
+              },
+            }}
           >
             {columns.map((column) => (
-              <MenuItem key={column.id} value={column.title}>
+              <MenuItem
+                key={column.id}
+                value={column.title}
+                sx={{ color: "white" }}
+              >
                 {column.title}
               </MenuItem>
             ))}
@@ -134,19 +168,27 @@ function TaskDetails() {
         <Box display="flex" justifyContent="space-between" mt={2}>
           <Button
             variant="contained"
-            color="primary"
+            color="success"
             onClick={handleSave}
-            sx={{ flex: 1, mr: 1 }}
+            sx={{ flex: 1, mr: 1, color: "white" }}
           >
-            Save Changes
+            Save
           </Button>
           <Button
             variant="outlined"
-            color="error"
             onClick={handleDelete}
-            sx={{ flex: 1, ml: 1 }}
+            color="error"
+            sx={{
+              flex: 1,
+              ml: 1,
+              "&:hover": {
+                backgroundColor: "rgba(244, 67, 54, 0.08)", // Light red for hover
+                borderColor: "rgba(244, 67, 54, 0.5)", // Red border color for hover
+              },
+              color: "white",
+            }}
           >
-            Delete Task
+            Delete
           </Button>
         </Box>
       </Box>

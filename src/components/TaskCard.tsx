@@ -4,7 +4,8 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Task } from "../types";
 import { Card, CardContent, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { colors } from "../theme/colors";
+import { DeleteOutline } from "@mui/icons-material";
 
 interface Props {
   task: Task;
@@ -117,13 +118,17 @@ function TaskCard({ task, deleteTask }: Props) {
             top: "50%",
             transform: "translateY(-50%)",
             bgcolor: "transparent",
-            p: 0,
+            width: "auto",
+            height: "auto",
+            color: "gray",
+            p: 1,
             "&:hover": {
-              bgcolor: "transparent",
+              bgcolor: colors.columnBackground,
+              color: "#f50057",
             },
           }}
         >
-          <DeleteIcon sx={{ color: "white" }} />
+          <DeleteOutline sx={{ color: "white-400" }} />
         </IconButton>
       )}
     </Card>
