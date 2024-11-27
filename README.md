@@ -28,7 +28,7 @@ First, fork this repository to your own GitHub account by clicking the **Fork** 
 Clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/YourGitHubID/kanban-board-app.git
+git clone https://github.com/YourGitHubID/peakflo-board.git
 ```
 
 ### 3. Move into the folder
