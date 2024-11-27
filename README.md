@@ -1,50 +1,56 @@
-# React + TypeScript + Vite
+# Project Board Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a **Kanban board** application built using **React**, **TypeScript**, and **Material UI**. It allows you to manage tasks through a drag-and-drop interface and stores board data in the browser’s `localStorage` to ensure persistence across page reloads.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Manage Tasks and Columns**: Add, edit, delete, and reorder tasks and columns.
+- **Drag-and-Drop**: Rearrange tasks and columns using the drag-and-drop functionality.
+- **Inline Editing**: Rename columns by clicking directly on their title.
+- **Data Persistence**: Task and column data is saved in `localStorage` to retain board state on page reload.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Vite**: For fast build and development setup.
+- **React + TypeScript**: For building a scalable and type-safe frontend.
+- **Material UI**: For pre-designed UI components and consistent design.
+- **localStorage**: To persist board data across browser sessions.
+- **@dnd-kit/core**: For drag-and-drop functionality.
 
-- Configure the top-level `parserOptions` property like this:
+## Setup
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1. Fork the repository
+
+First, fork this repository to your own GitHub account by clicking the **Fork** button at the top-right of this page.
+
+### 2. Clone your forked repository
+
+Clone the repository to your local machine using the following command:
+
+```bash
+git clone https://github.com/YourGitHubID/kanban-board-app.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 3. Move into the folder
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Use the following command to move into the project folder:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+cd peakflo-board
+```
+
+### 4. Install dependencies
+
+Install the required dependencies using npm:
+
+```bash
+npm install
+```
+
+### 5. Start the development server
+
+Run the development server with the following command:
+
+```bash
+npm run dev
 ```
