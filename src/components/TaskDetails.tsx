@@ -94,7 +94,7 @@ function TaskDetails() {
         margin: "auto",
         p: 3,
         boxShadow: 3,
-        width: "50vw",
+        width: "70vw",
         backgroundColor: "background.default",
       }}
     >
@@ -123,6 +123,12 @@ function TaskDetails() {
           fullWidth
           multiline
           rows={4}
+          InputProps={{
+            style: { color: "white" },
+          }}
+          InputLabelProps={{
+            style: { color: "white" },
+          }}
         />
         <FormControl
           fullWidth
