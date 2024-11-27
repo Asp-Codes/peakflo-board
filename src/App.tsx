@@ -8,7 +8,7 @@ function App() {
   <Router>
     <Routes>
       <Route path="/" element={<Kanban />} />
-      <Route path="/task/:taskId" element={<TaskDetails />} />
+      <Route path="/task/:taskId" element={<TaskDetails />} /> //Individually view a task in new page ex: /task/3939u4922....
     </Routes>
   </Router>
   );

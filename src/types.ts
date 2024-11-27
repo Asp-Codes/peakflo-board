@@ -9,6 +9,6 @@ export type Task = {
     id: Id;
     columnId: Id;
     content: string;
-    description?: string;
-    status?: string;
+    description: string;
+    status: string;
 };
