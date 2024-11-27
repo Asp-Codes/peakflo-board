@@ -15,7 +15,6 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import { colors } from "../theme/colors";
 
 function TaskDetails() {
   const { taskId } = useParams();
@@ -109,12 +108,26 @@ function TaskDetails() {
           onChange={(e) => setTask({ ...task, content: e.target.value })}
           fullWidth
           InputProps={{
-            style: { color: "white" },
+            style: { color: "white", borderColor: "white" },
           }}
           InputLabelProps={{
             style: { color: "white" },
           }}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "gray", // Border color when not focused
+              },
+              "&:hover fieldset": {
+                borderColor: "white", // Border color on hover
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "white", // Border color when focused
+              },
+            },
+          }}
         />
+
         <TextField
           label="Description"
           variant="outlined"
@@ -129,32 +142,66 @@ function TaskDetails() {
           InputLabelProps={{
             style: { color: "white" },
           }}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "gray", // Border color when not focused
+              },
+              "&:hover fieldset": {
+                borderColor: "white", // Border color on hover
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "white", // Border color when focused
+              },
+            },
+          }}
         />
+
         <FormControl
           fullWidth
-          sx={{ textAlign: "left", marginBottom: 2, color: "white" }}
+          sx={{
+            textAlign: "left",
+            marginBottom: 2,
+            color: "white",
+            border: "1px solid gray",
+            borderRadius: "2px",
+            "&:hover": {
+              border: "1px solid white",
+            },
+          }}
         >
           <InputLabel sx={{ color: "white" }}></InputLabel>
           <Select
             value={task.status}
             onChange={(e) => setTask({ ...task, status: e.target.value })}
             displayEmpty
+            inputProps={{
+              style: { color: "white" },
+            }}
             sx={{
               color: "white",
-              borderColor: "white",
-              backgroundColor: colors.columnBackground, // Set background color of select field
-              "&.Mui-focused": {
-                backgroundColor: colors.columnBackground, // Keep background black when focused
+              backgroundColor: "background.default",
+              "& .MuiOutlinedInput-root": {
+                borderColor: "white", // Default border color when not focused
+                "&:hover fieldset": {
+                  borderColor: "white", // Border color on hover
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white", // Border color when focused
+                },
+                "& fieldset": {
+                  borderWidth: "2px", // Ensure border width is visible
+                },
               },
-              "&:hover": {
-                backgroundColor: colors.columnBackground, // Darken the background color on hover
+              "& .MuiSelect-icon": {
+                color: "white",
               },
             }}
             MenuProps={{
               PaperProps: {
                 sx: {
-                  backgroundColor: colors.columnBackground, // Set background of dropdown menu
-                  color: "white", // Set text color of dropdown options
+                  backgroundColor: "background.default",
+                  color: "white",
                 },
               },
             }}
@@ -188,8 +235,8 @@ function TaskDetails() {
               flex: 1,
               ml: 1,
               "&:hover": {
-                backgroundColor: "rgba(244, 67, 54, 0.08)", // Light red for hover
-                borderColor: "rgba(244, 67, 54, 0.5)", // Red border color for hover
+                backgroundColor: "rgba(244, 67, 54, 0.08)",
+                borderColor: "rgba(244, 67, 54, 0.5)",
               },
               color: "white",
             }}

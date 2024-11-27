@@ -74,6 +74,8 @@ function ColumnContainer(props: Props) {
     <Box
       ref={setNodeRef}
       style={style}
+      {...attributes}
+      {...listeners}
       sx={{
         width: "350px",
         height: "500px",
@@ -84,8 +86,6 @@ function ColumnContainer(props: Props) {
       }}
     >
       <Box
-        {...attributes}
-        {...listeners}
         onClick={() => setEditMode(true)}
         sx={{
           backgroundColor: "background.default",

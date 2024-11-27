@@ -200,7 +200,7 @@ function Kanban() {
         minHeight: "100vh",
         overflowX: "hidden",
         overflowY: "scroll",
-        width: "99.5vw",
+        width: "99.8vw",
         backgroundColor: "black",
       }}
     >
