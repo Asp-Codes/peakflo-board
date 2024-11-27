@@ -1,5 +1,10 @@
-import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Task, Column } from "../types";
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+} from "../utils/LocalStorage";
 import {
   Box,
   TextField,
@@ -10,56 +15,51 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import { Task, Column } from "../types"; // Assuming your Task and Column types are here
-import { loadFromLocalStorage, saveToLocalStorage } from "../utils/LocalStorage";
 
 function TaskDetails() {
-  const { taskId } = useParams(); // Get taskId from URL
+  const { taskId } = useParams();
   const [task, setTask] = useState<Task | null>(null);
-  const [columns, setColumns] = useState<Column[]>([]); // Add state for columns
+  const [columns, setColumns] = useState<Column[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch the task and columns data from localStorage or other state
     const { columns, tasks } = loadFromLocalStorage();
     const foundTask = tasks.find((task) => task.id === taskId);
     if (foundTask) {
       setTask(foundTask);
 
-      // Find the current column by columnId and set it as the default status
-      const currentColumn = columns.find((column) => column.id === foundTask.columnId);
+      const currentColumn = columns.find(
+        (column) => column.id === foundTask.columnId
+      );
       if (currentColumn) {
-        setTask((prevTask) => prevTask ? { ...prevTask, status: currentColumn.title } : prevTask);
+        setTask((prevTask) =>
+          prevTask ? { ...prevTask, status: currentColumn.title } : prevTask
+        );
       }
     }
-    setColumns(columns); // Set columns state
+    setColumns(columns);
   }, [taskId]);
 
   const handleDelete = () => {
     if (task) {
-      // Remove task from localStorage or state
+      // Remove task from localStorage
       const { columns, tasks } = loadFromLocalStorage();
       const updatedTasks = tasks.filter((t) => t.id !== task.id);
-      saveToLocalStorage(columns, updatedTasks); // Assuming saveToLocalStorage handles both columns and tasks
-      navigate("/"); // Navigate back to the Kanban board
+      saveToLocalStorage(columns, updatedTasks);
+      navigate("/"); // Navigate back to the Kanban board after deleting the task.
     }
   };
 
   const handleSave = () => {
     if (task) {
-      // Save the updated task back to localStorage or state
+      // Save the updated task back to localStorage
       const { columns, tasks } = loadFromLocalStorage();
-    //   const updatedTasks = tasks.map((t) =>
-    //     t.id === task.id ? { ...task } : t
-    //   );
 
-      // Find the column that corresponds to the selected status (column title)
-      const selectedColumn = columns.find(
-        (col) => col.title === task.status
-      );
+      // Find the column of the selected status using column title
+      const selectedColumn = columns.find((col) => col.title === task.status);
 
       if (selectedColumn) {
-        // Update the columnId of the task to the columnId of the selected column
+        // Update the columnId
         const updatedTask = { ...task, columnId: selectedColumn.id };
         const updatedTasksWithColumn = tasks.map((t) =>
           t.id === task.id ? updatedTask : t
@@ -69,13 +69,18 @@ function TaskDetails() {
         saveToLocalStorage(columns, updatedTasksWithColumn);
       }
 
-      navigate("/"); // Navigate back to the Kanban board
+      navigate("/"); // Navigate back to the Kanban board after saving the task.
     }
   };
 
   if (!task || !columns) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
         <Typography variant="h6">Loading...</Typography>
       </Box>
     );
@@ -111,20 +116,20 @@ function TaskDetails() {
           multiline
           rows={4}
         />
-        <FormControl fullWidth sx={{ textAlign: 'left', marginBottom: 2 }}>
-  <InputLabel></InputLabel>
-  <Select
-    value={task.status || ""} // Default to an empty string if no status
-    onChange={(e) => setTask({ ...task, status: e.target.value })}
-    displayEmpty
-  >
-    {columns.map((column) => (
-      <MenuItem key={column.id} value={column.title}>
-        {column.title}
-      </MenuItem>
-    ))}
-  </Select>
-</FormControl>
+        <FormControl fullWidth sx={{ textAlign: "left", marginBottom: 2 }}>
+          <InputLabel></InputLabel>
+          <Select
+            value={task.status}
+            onChange={(e) => setTask({ ...task, status: e.target.value })}
+            displayEmpty
+          >
+            {columns.map((column) => (
+              <MenuItem key={column.id} value={column.title}>
+                {column.title}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         <Box display="flex" justifyContent="space-between" mt={2}>
           <Button

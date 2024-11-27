@@ -1,13 +1,8 @@
 #root {
-  /* max-width: 1280px; */
   margin: 0 auto;
-  /* padding: 2rem; */
   text-align: center;
   background-color: black;
   color: white;
-  /* width: 100vw; */
-  /* border: 2px solid #646cff; */
-  /* box-sizing: border-box; */
 }
 
 .logo {
@@ -48,16 +43,16 @@
 
 /* Global Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 4px; /* Vertical scrollbar width */
-  height: 4px; /* Horizontal scrollbar height */
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(220, 38, 38); /* Rose-900 equivalent */
-  border-radius: 9999px; /* Rounded corners */
+  background-color: rgb(220, 38, 38);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgb(0, 0, 0); /* Sky-500 equivalent */
-  border-radius: 9999px; /* Rounded corners */
+  background-color: rgb(0, 0, 0);
+  border-radius: 9999px;
 }
